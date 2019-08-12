@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--Hints-->
+    <string name="percent">%</string>
+    <string name="real_sign">R$</string>
+    <string name="day_month_year">dia/mês/ano</string>
+    <!--Hints-->
+    
+    <!--Texts-->
+    <string name="simulate">Simular</string>
+    <string name="how_much_you_like_to_apply">Quanto você gostaria de aplicar? *</string>
+    <string name="what_the_maturity_date">Qual a data de vencimento do investimento? *</string>
+    <string name="what_investment_percentage">Qual o percentual do CDI do investimento? *</string>
+    <!--Texts-->
+    
+    <!--Exceptions-->
+    <string name="type_how_much_you_like_apply">Digite quanto você gostaria de aplicar</string>
+    <string name="type_cdi_investment_percent">Digite o percentual do CDI do investimento</string>
+    <string name="type_valid_the_maturity_date_investment">Digite uma data de vencimento válida</string>
+    <string name="type_the_maturity_date_investment">Digite a data de vencimento do investimento</string>
+    <!--Exceptions-->
+
+</resources>

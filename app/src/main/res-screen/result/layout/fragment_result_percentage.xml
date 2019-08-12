@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtRescueDateTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/rescue_date"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtRescueDateValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@id/txtRescueDateTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtRescueDateTitle"
+            app:layout_constraintStart_toEndOf="@id/txtRescueDateTitle"
+            tools:text="27/10/2018"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCalendarDaysTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/calendar_days"
+            app:layout_constraintTop_toBottomOf="@id/txtRescueDateValue"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtCalendarDaysValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@id/txtCalendarDaysTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtCalendarDaysTitle"
+            app:layout_constraintStart_toEndOf="@id/txtCalendarDaysTitle"
+            tools:text="365"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtMonthlyIncomeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/monthly_income"
+            app:layout_constraintTop_toBottomOf="@id/txtCalendarDaysValue"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtMonthlyIncomeValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@id/txtMonthlyIncomeTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtMonthlyIncomeTitle"
+            app:layout_constraintStart_toEndOf="@id/txtMonthlyIncomeTitle"
+            tools:text="0,57%"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtInvestmentCDIPercentageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/investment_cdi_percentage"
+            app:layout_constraintTop_toBottomOf="@id/txtMonthlyIncomeValue"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtInvestmentCDIPercentageValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@id/txtInvestmentCDIPercentageTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtInvestmentCDIPercentageTitle"
+            app:layout_constraintStart_toEndOf="@id/txtInvestmentCDIPercentageTitle"
+            tools:text="123%"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtAnnualProfitabilityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/annual_profitability"
+            app:layout_constraintTop_toBottomOf="@id/txtInvestmentCDIPercentageValue"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtAnnualProfitabilityValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@id/txtAnnualProfitabilityTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtAnnualProfitabilityTitle"
+            app:layout_constraintStart_toEndOf="@id/txtAnnualProfitabilityTitle"
+            tools:text="R$ 1.000,00"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtPeriodProfitabilityTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/profitability_in_period"
+            app:layout_constraintTop_toBottomOf="@id/txtAnnualProfitabilityValue"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtPeriodProfitabilityValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@id/txtPeriodProfitabilityTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtPeriodProfitabilityTitle"
+            app:layout_constraintStart_toEndOf="@id/txtPeriodProfitabilityTitle"
+            tools:text="R$ 1.000,00"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="true"
+            android:fillViewport="true"
+            app:layout_constraintEnd_toEndOf="@id/btnSimulateAgain"
+            app:layout_constraintStart_toStartOf="@id/btnSimulateAgain"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/btnSimulateAgain">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <include android:id="@+id/include_header"
+                 layout="@layout/fragment_result_header"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 app:layout_constraintBottom_toTopOf="@id/include_value"
+                 app:layout_constraintEnd_toEndOf="@id/btnSimulateAgain"
+                 app:layout_constraintStart_toStartOf="@id/btnSimulateAgain"
+                 app:layout_constraintTop_toTopOf="parent"/>
+
+        <include android:id="@+id/include_value"
+                 layout="@layout/fragment_result_value"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 app:layout_constraintBottom_toTopOf="@id/include_percentage"
+                 app:layout_constraintEnd_toEndOf="@id/btnSimulateAgain"
+                 app:layout_constraintStart_toStartOf="@id/btnSimulateAgain"
+                 app:layout_constraintTop_toBottomOf="@id/include_header"/>
+
+        <include android:id="@+id/include_percentage"
+                 layout="@layout/fragment_result_percentage"
+                 android:layout_width="0dp"
+                 android:layout_height="wrap_content"
+                 app:layout_constraintBottom_toTopOf="@id/btnSimulateAgain"
+                 app:layout_constraintEnd_toEndOf="@id/btnSimulateAgain"
+                 app:layout_constraintStart_toStartOf="@id/btnSimulateAgain"
+                 app:layout_constraintTop_toBottomOf="@id/include_value"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSimulateAgain"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_rectangle_rounded_accent"
+                android:layout_margin="@dimen/margin_default"
+                android:text="@string/simulate_again"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_default"
+                app:fontFamily="@font/din_light"
+                app:layout_constraintTop_toBottomOf="@id/include_percentage"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

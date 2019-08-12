@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtSimulationResult"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_margin="@dimen/margin_default"
+            android:text="@string/simulation_result"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/simulation_result"
+            android:textSize="@dimen/text_size_big"
+            app:layout_constraintTop_toBottomOf="@id/txtSimulationResult"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="R$ 1.088.69"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtTotalIncomeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/total_income"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintTop_toBottomOf="@id/txtValue"
+            app:layout_constraintEnd_toStartOf="@id/txtTotalIncomeValue"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtTotalIncomeValue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="@dimen/margin_micro"
+            android:layout_marginStart="@dimen/margin_micro"
+            android:text="@string/total_income"
+            android:textColor="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@id/txtTotalIncomeTitle"
+            app:layout_constraintTop_toTopOf="@id/txtTotalIncomeTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txtTotalIncomeTitle"
+            tools:text="R$ 88,69"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtInvestedAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_margin="@dimen/margin_default"
+                android:text="@string/how_much_you_like_to_apply"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/edtInvestedAmount"/>
+
+        <br.com.isgreen.calculatorsimulator.util.widget.CurrencyEditText
+                android:id="@+id/edtInvestedAmount"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edit_text_height"
+                android:gravity="center"
+                android:hint="@string/real_sign"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="@id/txtInvestedAmount"
+                app:layout_constraintStart_toStartOf="@id/txtInvestedAmount"
+                app:layout_constraintTop_toBottomOf="@+id/txtInvestedAmount"
+                app:layout_constraintBottom_toTopOf="@+id/txtMaturityDate"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtMaturityDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_default"
+                android:text="@string/what_the_maturity_date"
+                app:layout_constraintTop_toBottomOf="@+id/edtInvestedAmount"
+                app:layout_constraintEnd_toEndOf="@id/txtInvestedAmount"
+                app:layout_constraintStart_toStartOf="@id/txtInvestedAmount"
+                app:layout_constraintBottom_toTopOf="@+id/edtMaturityDate"/>
+
+        <br.com.isgreen.maskedittext.MaskEditText
+                android:id="@+id/edtMaturityDate"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edit_text_height"
+                android:gravity="center"
+                android:hint="@string/day_month_year"
+                android:inputType="number"
+                app:mask="##/##/####"
+                app:layout_constraintEnd_toEndOf="@id/txtInvestedAmount"
+                app:layout_constraintStart_toStartOf="@id/txtInvestedAmount"
+                app:layout_constraintTop_toBottomOf="@+id/txtMaturityDate"
+                app:layout_constraintBottom_toTopOf="@+id/txtRatePercentage"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/txtRatePercentage"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/margin_default"
+                android:text="@string/what_the_maturity_date"
+                app:layout_constraintTop_toBottomOf="@+id/edtMaturityDate"
+                app:layout_constraintEnd_toEndOf="@id/txtInvestedAmount"
+                app:layout_constraintStart_toStartOf="@id/txtInvestedAmount"
+                app:layout_constraintBottom_toTopOf="@+id/edtRatePercentage"/>
+
+        <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edtRatePercentage"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/edit_text_height"
+                android:gravity="center"
+                android:hint="@string/percent"
+                android:inputType="number"
+                app:layout_constraintEnd_toEndOf="@id/txtInvestedAmount"
+                app:layout_constraintStart_toStartOf="@id/txtInvestedAmount"
+                app:layout_constraintTop_toBottomOf="@+id/txtRatePercentage"
+                app:layout_constraintBottom_toTopOf="@+id/btnSimulate"/>
+
+        <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnSimulate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_rectangle_rounded_gray"
+                android:layout_marginBottom="@dimen/margin_default"
+                android:layout_marginTop="@dimen/margin_default"
+                android:text="@string/simulate"
+                android:textAllCaps="false"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/text_size_default"
+                app:fontFamily="@font/din_light"
+                app:layout_constraintTop_toBottomOf="@+id/edtRatePercentage"
+                app:layout_constraintEnd_toEndOf="@id/txtInvestedAmount"
+                app:layout_constraintStart_toStartOf="@id/txtInvestedAmount"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ProgressBar android:id="@+id/pbLoad"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:visibility="gone"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintTop_toTopOf="parent"
+                     tools:visibility="visible"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

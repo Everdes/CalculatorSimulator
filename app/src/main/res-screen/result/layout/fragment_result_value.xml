@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtInitiallyAppliedTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/value_initially_applied"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtInitiallyAppliedValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            android:text="@string/value_initially_applied"
+            app:layout_constraintBottom_toBottomOf="@id/txtInitiallyAppliedTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtInitiallyAppliedTitle"
+            app:layout_constraintStart_toEndOf="@id/txtInitiallyAppliedTitle"
+            tools:text="R$ 1.000,00"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtGrossInvestmentTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/gross_value_investment"
+            app:layout_constraintTop_toBottomOf="@id/txtInitiallyAppliedTitle"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtGrossInvestmentValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@id/txtGrossInvestmentTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtGrossInvestmentTitle"
+            app:layout_constraintStart_toEndOf="@id/txtGrossInvestmentTitle"
+            tools:text="R$ 1.000,00"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtIncomeTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/income_value"
+            app:layout_constraintTop_toBottomOf="@id/txtGrossInvestmentTitle"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtIncomeValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@id/txtIncomeTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtIncomeTitle"
+            app:layout_constraintStart_toEndOf="@id/txtIncomeTitle"
+            tools:text="R$ 88,69"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtIRInvestmentTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/ir_on_investment"
+            app:layout_constraintTop_toBottomOf="@id/txtIncomeTitle"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtIRInvestmentValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@id/txtIRInvestmentTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtIRInvestmentTitle"
+            app:layout_constraintStart_toEndOf="@id/txtIRInvestmentTitle"
+            tools:text="R$ 15,52(17,50%)"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtNetInvestmentTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/margin_default"
+            android:text="@string/net_investment_value"
+            app:layout_constraintTop_toBottomOf="@id/txtIRInvestmentTitle"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txtNetInvestmentValue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="end"
+            app:layout_constraintBottom_toBottomOf="@id/txtNetInvestmentTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/txtNetInvestmentTitle"
+            app:layout_constraintStart_toEndOf="@id/txtNetInvestmentTitle"
+            tools:text="R$ 1.000,00"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

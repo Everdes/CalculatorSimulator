@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <!--Conversions-->
+    <string name="monetary_value">R$ %.2f</string>
+    <string name="percentage_value">%.2f%%</string>
+    <string name="currency_and_percentage_value">%s (%s)</string>
+    <!--Conversions-->
+
+    <!--Texts-->
+    <string name="calendar_days">Dias corridos</string>
+    <string name="rescue_date">Data de resgate</string>
+    <string name="simulate_again">Simular novamente</string>
+    <string name="income_value">Valor do rendimento</string>
+    <string name="monthly_income">Rendimento mensal</string>
+    <string name="total_income">Rendimento total de </string>
+    <string name="simulation_result">Resultado da simulação</string>
+    <string name="ir_on_investment">IR sobre o investimento</string>
+    <string name="profitability_in_period">Rentabilidade no período</string>
+    <string name="gross_value_investment">Valor bruto do investimento</string>
+    <string name="net_investment_value">Valor líquido do investimento</string>
+    <string name="value_initially_applied">Valor aplicado inicialmente</string>
+    <string name="investment_cdi_percentage">Percentual do CDI do investimento</string>
+    <string name="annual_profitability" tools:ignore="Typos">Rentabilidade anual</string>
+    <!--Texts-->
+
+</resources>

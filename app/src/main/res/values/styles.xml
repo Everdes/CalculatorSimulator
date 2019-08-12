@@ -1,0 +1,36 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:editTextStyle">@style/AppTheme.EditTextStyle</item>
+        <item name="android:textViewStyle">@style/AppTheme.TextViewStyle</item>
+    </style>
+
+    <!-- Edit theme. -->
+    <style name="AppTheme.EditTextStyle" parent="Widget.AppCompat.EditText">
+        <item name="android:lines">1</item>
+        <item name="android:fontFamily">@font/din</item>
+        <item name="android:textSize">@dimen/text_size_default</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:layout_marginTop">@dimen/margin_default</item>
+        <item name="android:layout_marginEnd">@dimen/margin_default</item>
+        <item name="android:textColor">@drawable/selector_edit_text</item>
+        <item name="android:textColorHint">@color/colorTextSecondary</item>
+        <item name="android:layout_marginLeft">@dimen/margin_default</item>
+        <item name="android:layout_marginRight">@dimen/margin_default</item>
+        <item name="android:layout_marginStart">@dimen/margin_default</item>
+    </style>
+    <!-- Edit theme. -->
+
+    <!-- TextView theme. -->
+    <style name="AppTheme.TextViewStyle">
+        <item name="android:fontFamily">@font/din</item>
+        <item name="android:textColor">@color/colorTextPrimary</item>
+    </style>
+    <!-- TextView theme. -->
+
+</resources>
