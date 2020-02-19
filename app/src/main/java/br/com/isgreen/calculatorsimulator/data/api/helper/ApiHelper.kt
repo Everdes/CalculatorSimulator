@@ -1,4 +1,4 @@
-package br.com.isgreen.calculatorsimulator.data.datasource
+package br.com.isgreen.calculatorsimulator.data.api.helper
 
 import br.com.isgreen.calculatorsimulator.data.model.Simulation
 
@@ -6,7 +6,7 @@ import br.com.isgreen.calculatorsimulator.data.model.Simulation
  * Created by Éverdes Soares on 08/07/2019.
  */
 
-interface DataSource {
+interface ApiHelper {
 
     suspend fun getSimulation(
         rate: Int,

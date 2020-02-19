@@ -1,8 +1,8 @@
 package br.com.isgreen.calculatorsimulator.di
 
 import br.com.isgreen.calculatorsimulator.data.api.Api
-import br.com.isgreen.calculatorsimulator.data.datasource.DataSource
-import br.com.isgreen.calculatorsimulator.data.datasource.DataSourceImpl
+import br.com.isgreen.calculatorsimulator.data.api.helper.ApiHelper
+import br.com.isgreen.calculatorsimulator.data.api.helper.ApiHelperImpl
 import org.koin.dsl.module
 
 /**
@@ -11,5 +11,5 @@ import org.koin.dsl.module
 
 val appModule = module {
     single { Api.Factory.create() }
-    single<DataSource> { DataSourceImpl(get()) }
+    single<ApiHelper> { ApiHelperImpl(get()) }
 }

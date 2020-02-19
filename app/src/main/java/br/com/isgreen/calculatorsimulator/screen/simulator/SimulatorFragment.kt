@@ -1,21 +1,13 @@
 package br.com.isgreen.calculatorsimulator.screen.simulator
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
-import androidx.annotation.StringRes
-import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import br.com.isgreen.calculatorsimulator.R
+import br.com.isgreen.calculatorsimulator.base.BaseFragment
 import br.com.isgreen.calculatorsimulator.data.model.Simulation
-import br.com.isgreen.calculatorsimulator.screen.result.ResultFragment
-import br.com.isgreen.calculatorsimulator.util.extension.hideKeyboard
-import br.com.isgreen.calculatorsimulator.util.extension.toastShort
+import br.com.isgreen.calculatorsimulator.extension.hideKeyboard
+import br.com.isgreen.calculatorsimulator.extension.showMessage
 import kotlinx.android.synthetic.main.fragment_simulator.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -23,53 +15,19 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  * Created by Éverdes Soares on 08/07/2019.
  */
 
-class SimulatorFragment : Fragment(), SimulatorContract.View {
+class SimulatorFragment : BaseFragment() {
 
     private val mViewModel: SimulatorViewModel by viewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    //region Base Fragment
+    override fun getViewModel() = mViewModel
 
-        initObservers()
-    }
+    override fun layout() = R.layout.fragment_simulator
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_simulator, container, false)
-    }
+    override fun initView() {
+        btnSimulate?.setOnClickListener { getSimulation() }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        initView()
-    }
-    //endregion Fragment
-
-    //region Local
-    private fun initObservers() {
-        mViewModel.loading.observe(this, Observer { loading ->
-            changeViewsState(loading)
-            hideKeyboard()
-        })
-
-        mViewModel.message.observe(this, Observer { message ->
-            showMessage(message)
-        })
-
-        mViewModel.simulation.observe(this, Observer { simulation ->
-            showResult(simulation)
-        })
-    }
-
-    private fun initView() {
-        btnSimulate.setOnClickListener {
-            getSimulation()
-        }
-
-        edtRatePercentage.setOnEditorActionListener { _, actionId, _ ->
+        edtRatePercentage?.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
                 getSimulation()
 
@@ -80,14 +38,27 @@ class SimulatorFragment : Fragment(), SimulatorContract.View {
         }
     }
 
-    private fun hideKeyboard() {
+    override fun initObservers() {
+        mViewModel.simulation.observe(this, Observer { simulation ->
+            showResult(simulation)
+        })
+    }
+
+    override fun changeLoading(isLoading: Boolean) {
         btnSimulate?.hideKeyboard()
+        pbLoad?.isVisible = isLoading
+        btnSimulate?.isEnabled = !isLoading
+        edtMaturityDate?.isEnabled = !isLoading
+        edtInvestedAmount?.isEnabled = !isLoading
+        edtRatePercentage?.isEnabled = !isLoading
     }
 
-    private fun showMessage(@StringRes message: Int) {
-        context?.toastShort(message)
+    override fun showError(message: Any) {
+        showMessage(message)
     }
+    //endregion Base Fragment
 
+    //region Local
     private fun getSimulation() {
         mViewModel.getSimulation(
             edtRatePercentage?.text?.toString()?.toIntOrNull(),
@@ -95,20 +66,10 @@ class SimulatorFragment : Fragment(), SimulatorContract.View {
             edtInvestedAmount?.getValue()
         )
     }
+
+    private fun showResult(simulation: Simulation) {
+        val directions = SimulatorFragmentDirections.actionSimulatorFragmentToResultFragment(simulation)
+        navigate(directions)
+    }
     //region Local
-
-    //region Contract
-    override fun changeViewsState(loading: Boolean) {
-        pbLoad?.isVisible = loading
-        btnSimulate?.isEnabled = !loading
-        edtMaturityDate?.isEnabled = !loading
-        edtInvestedAmount?.isEnabled = !loading
-        edtRatePercentage?.isEnabled = !loading
-    }
-
-    override fun showResult(simulation: Simulation) {
-        val bundle = bundleOf(ResultFragment.ARG_SIMULATION to simulation)
-        findNavController().navigate(R.id.action_simulatorFragment_to_resultFragment, bundle)
-    }
-    //endregion Contract
 }

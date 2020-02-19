@@ -2,14 +2,11 @@ package br.com.isgreen.calculatorsimulator.screen.simulator
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import br.com.isgreen.calculatorsimulator.R
+import br.com.isgreen.calculatorsimulator.base.BaseValidatorHelper
 import br.com.isgreen.calculatorsimulator.base.BaseViewModel
 import br.com.isgreen.calculatorsimulator.data.model.Simulation
+import br.com.isgreen.calculatorsimulator.helper.exception.ExceptionHelper
 import br.com.isgreen.calculatorsimulator.util.DateUtil
-import br.com.isgreen.calculatorsimulator.validation.SimulationValidator
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.launch
 
 /**
@@ -17,35 +14,25 @@ import kotlinx.coroutines.launch
  */
 
 class SimulatorViewModel(
+    private val validatorHelper: BaseValidatorHelper,
     private val repository: SimulatorContract.Repository
-) : BaseViewModel(), SimulatorContract.ViewModel {
+) : SimulatorContract.ViewModel, BaseViewModel() {
 
     companion object {
         const val INDEX_CDI = "CDI"
     }
 
-    private val mSimulation = MutableLiveData<Simulation>()
-
-    override val message: LiveData<Int>
-        get() = mMessage
-
-    override val loading: LiveData<Boolean>
-        get() = mLoading
-
     override val simulation: LiveData<Simulation>
         get() = mSimulation
 
+    private val mSimulation = MutableLiveData<Simulation>()
+
     override fun getSimulation(rate: Int?, maturityDate: String?, investedAmount: Double?) {
-        CoroutineScope(Dispatchers.IO + SupervisorJob()).launch {
+        ioScope.launch {
             mLoading.postValue(true)
 
             try {
-                val validation = SimulationValidator.validate(rate, maturityDate, investedAmount)
-                if (validation != SimulationValidator.NO_ERROR) {
-                    mLoading.postValue(false)
-                    mMessage.postValue(validation)
-                    return@launch
-                }
+                validatorHelper.validate(rate, maturityDate, investedAmount)
 
                 val formattedDate = DateUtil.formatDate(
                     maturityDate!!,
@@ -65,7 +52,7 @@ class SimulatorViewModel(
                 mSimulation.postValue(response)
             } catch (e: Throwable) {
                 mLoading.postValue(false)
-                mMessage.postValue(R.string.failed_request)
+                mErrorMessage.postValue(ExceptionHelper.getMessage(e))
             }
         }
     }

@@ -2,14 +2,14 @@ ext {
     koin_version = '2.0.1'
     mockito_version = '2.23.0'
     retrofit_version = '2.6.1'
-    maskedit_version = '1.0.11'
-    appcompat_version = '1.0.2'
-    lifecycle_version = '2.0.0'
-    navigation_version = '2.0.0'
+    maskedit_version = '1.0.14'
+    appcompat_version = '1.1.0'
+    lifecycle_version = '2.2.0'
+    navigation_version = '2.2.1'
     test_runner_version = '1.2.0'
     interceptor_version = '4.0.1'
     core_testing_version = '2.0.0'
-    androidx_core_version = '1.0.2'
+    androidx_core_version = '1.2.0'
     espresso_core_version = '3.2.0'
     koin_viewmodel_version = '2.0.1'
     mockito_inline_version = '2.27.0'
@@ -25,7 +25,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     // Test
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     testImplementation "org.mockito:mockito-core:$mockito_version"
     testImplementation "org.mockito:mockito-inline:$mockito_inline_version"
     testImplementation "androidx.arch.core:core-testing:$core_testing_version"

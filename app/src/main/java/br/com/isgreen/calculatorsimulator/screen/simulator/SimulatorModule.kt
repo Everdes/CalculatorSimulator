@@ -1,5 +1,6 @@
 package br.com.isgreen.calculatorsimulator.screen.simulator
 
+import br.com.isgreen.calculatorsimulator.base.BaseValidatorHelper
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
@@ -8,6 +9,7 @@ import org.koin.dsl.module
  */
 
 val simulatorModule = module {
+    factory<BaseValidatorHelper> { SimulatorValidatorHelper(get()) }
     factory<SimulatorContract.Repository> { SimulatorRepository(get()) }
-    viewModel { SimulatorViewModel(get()) }
+    viewModel { SimulatorViewModel(get(), get()) }
 }

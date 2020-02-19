@@ -1,13 +1,13 @@
 package br.com.isgreen.calculatorsimulator.screen.simulator
 
-import br.com.isgreen.calculatorsimulator.data.datasource.DataSource
+import br.com.isgreen.calculatorsimulator.data.api.helper.ApiHelper
 import br.com.isgreen.calculatorsimulator.data.model.Simulation
 
 /**
  * Created by Éverdes Soares on 08/07/2019.
  */
 
-class SimulatorRepository(private val dataSource: DataSource) : SimulatorContract.Repository {
+class SimulatorRepository(private val apiHelper: ApiHelper) : SimulatorContract.Repository {
 
     override suspend fun getSimulation(
         rate: Int,
@@ -16,6 +16,6 @@ class SimulatorRepository(private val dataSource: DataSource) : SimulatorContrac
         maturityDate: String,
         investedAmount: Double
     ): Simulation {
-        return dataSource.getSimulation(rate, index, isTaxFree, maturityDate, investedAmount)
+        return apiHelper.getSimulation(rate, index, isTaxFree, maturityDate, investedAmount)
     }
 }

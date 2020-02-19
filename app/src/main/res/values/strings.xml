@@ -4,7 +4,9 @@
     <!--Exceptions-->
     <string name="no_data">Sem dados</string>
     <string name="no_internet_signal">Sem sinal de internet</string>
-    <string name="failed_request">Houve uma falha. Tente novamente</string>
+    <string name="failed_server">Houve uma falha no Servidor</string>
+    <string name="no_server_response">Não houve resposta do servidor</string>
+    <string name="there_was_a_fail_try_again">Houve uma falha. Tente novamente</string>
     <!--Exceptions-->
 
 </resources>

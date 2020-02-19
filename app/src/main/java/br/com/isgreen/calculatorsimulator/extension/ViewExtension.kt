@@ -1,4 +1,4 @@
-package br.com.isgreen.calculatorsimulator.util.extension
+package br.com.isgreen.calculatorsimulator.extension
 
 import android.content.Context
 import android.view.View

@@ -2,10 +2,12 @@ package br.com.isgreen.calculatorsimulator
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import br.com.isgreen.calculatorsimulator.base.BaseValidationException
+import br.com.isgreen.calculatorsimulator.base.BaseValidatorHelper
 import br.com.isgreen.calculatorsimulator.data.model.Simulation
 import br.com.isgreen.calculatorsimulator.screen.simulator.SimulatorContract
+import br.com.isgreen.calculatorsimulator.screen.simulator.SimulatorValidatorHelper
 import br.com.isgreen.calculatorsimulator.screen.simulator.SimulatorViewModel
-import br.com.isgreen.calculatorsimulator.validation.SimulationValidator
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
@@ -41,7 +43,7 @@ open class SimulatorViewModelTest {
     private lateinit var mViewModel: SimulatorContract.ViewModel
 
     @Mock
-    private lateinit var mMessageObserver: Observer<Int>
+    private lateinit var mMessageObserver: Observer<Any>
 
     @Mock
     private lateinit var mLoadingObserver: Observer<Boolean>
@@ -55,27 +57,36 @@ open class SimulatorViewModelTest {
     @Mock
     private lateinit var mSimulation: Simulation
 
+    @Mock
+    private lateinit var mSimulatorValidator: SimulatorValidatorHelper
+
     @Before
     fun setUp() {
         MockitoAnnotations.initMocks(this)
 
-        mViewModel = SimulatorViewModel(mRepository)
+        mViewModel = SimulatorViewModel(mSimulatorValidator, mRepository)
     }
 
     @ExperimentalCoroutinesApi
     @Test
     fun getSimulation_success() {
-        runBlocking {
-            mViewModel.loading.observeForever(mLoadingObserver)
-            mViewModel.simulation.observeForever(mSimulationObserver)
-            mViewModel.getSimulation(RATE, MATURITY_DATE, INVESTED_AMOUNT)
+        mViewModel.loading.observeForever(mLoadingObserver)
+        mViewModel.simulation.observeForever(mSimulationObserver)
+        mViewModel.getSimulation(RATE, MATURITY_DATE, INVESTED_AMOUNT)
 
-            `when`(mRepository.getSimulation(anyInt(), anyString(), anyBoolean(), anyString(), anyDouble()))
-                .thenReturn(mSimulation)
+        runBlocking {
+            `when`(
+                mRepository.getSimulation(
+                    anyInt(),
+                    anyString(),
+                    anyBoolean(),
+                    anyString(),
+                    anyDouble()
+                )
+            ).thenReturn(mSimulation)
 
             launch {
                 verify(mLoadingObserver).onChanged(true)
-
                 mRepository.getSimulation(RATE, INDEX, TAX_FREE, MATURITY_DATE, INVESTED_AMOUNT)
 
                 verify(mLoadingObserver).onChanged(false)
@@ -86,38 +97,48 @@ open class SimulatorViewModelTest {
 
     @Test
     fun getSimulation_fail() {
-        runBlocking {
-            `when`(mRepository.getSimulation(anyInt(), anyString(), anyBoolean(), anyString(), anyDouble()))
-                .thenAnswer { Throwable() }
+        mViewModel.loading.observeForever(mLoadingObserver)
+        mViewModel.errorMessage.observeForever(mMessageObserver)
 
-            mViewModel.loading.observeForever(mLoadingObserver)
-            mViewModel.message.observeForever(mMessageObserver)
+        runBlocking {
+
+            `when`(
+                mRepository.getSimulation(
+                    anyInt(),
+                    anyString(),
+                    anyBoolean(),
+                    anyString(),
+                    anyDouble()
+                )
+            ).thenAnswer { Throwable() }
+
             mViewModel.getSimulation(RATE, MATURITY_DATE, INVESTED_AMOUNT)
 
             launch {
                 verify(mLoadingObserver).onChanged(true)
-
-                SimulationValidator.validate(RATE, MATURITY_DATE, INVESTED_AMOUNT)
-
+                mSimulatorValidator.validate(RATE, MATURITY_DATE, INVESTED_AMOUNT)
                 mRepository.getSimulation(RATE, INDEX, TAX_FREE, MATURITY_DATE, INVESTED_AMOUNT)
 
+                verify(mMessageObserver).onChanged(any())
                 verify(mLoadingObserver).onChanged(false)
-                verify(mMessageObserver).onChanged(R.string.failed_request)
             }
         }
     }
 
     @Test
     fun getSimulation_rateIsNull() {
+        mViewModel.loading.observeForever(mLoadingObserver)
+        mViewModel.errorMessage.observeForever(mMessageObserver)
+
         runBlocking {
-            mViewModel.loading.observeForever(mLoadingObserver)
-            mViewModel.message.observeForever(mMessageObserver)
+            `when`(mSimulatorValidator.validate(null, MATURITY_DATE, INVESTED_AMOUNT))
+                .thenAnswer { Throwable() }
+
             mViewModel.getSimulation(null, MATURITY_DATE, INVESTED_AMOUNT)
 
             launch {
                 verify(mLoadingObserver).onChanged(true)
-
-                SimulationValidator.validate(null, MATURITY_DATE, INVESTED_AMOUNT)
+                mSimulatorValidator.validate(null, MATURITY_DATE, INVESTED_AMOUNT)
 
                 verify(mLoadingObserver).onChanged(false)
                 verify(mMessageObserver).onChanged(R.string.type_cdi_investment_percent)
@@ -127,15 +148,14 @@ open class SimulatorViewModelTest {
 
     @Test
     fun getSimulation_maturityDateIsNull() {
-        runBlocking {
-            mViewModel.loading.observeForever(mLoadingObserver)
-            mViewModel.message.observeForever(mMessageObserver)
-            mViewModel.getSimulation(RATE, null, INVESTED_AMOUNT)
+        mViewModel.loading.observeForever(mLoadingObserver)
+        mViewModel.errorMessage.observeForever(mMessageObserver)
+        mViewModel.getSimulation(RATE, null, INVESTED_AMOUNT)
 
+        runBlocking {
             launch {
                 verify(mLoadingObserver).onChanged(true)
-
-                SimulationValidator.validate(RATE, null, INVESTED_AMOUNT)
+                mSimulatorValidator.validate(RATE, null, INVESTED_AMOUNT)
 
                 verify(mLoadingObserver).onChanged(false)
                 verify(mMessageObserver).onChanged(R.string.type_the_maturity_date_investment)
@@ -145,15 +165,14 @@ open class SimulatorViewModelTest {
 
     @Test
     fun getSimulation_investedAmountIsNull() {
-        runBlocking {
-            mViewModel.loading.observeForever(mLoadingObserver)
-            mViewModel.message.observeForever(mMessageObserver)
-            mViewModel.getSimulation(RATE, MATURITY_DATE, 0.0)
+        mViewModel.loading.observeForever(mLoadingObserver)
+        mViewModel.errorMessage.observeForever(mMessageObserver)
+        mViewModel.getSimulation(RATE, MATURITY_DATE, 0.0)
 
+        runBlocking {
             launch {
                 verify(mLoadingObserver).onChanged(true)
-
-                SimulationValidator.validate(RATE, MATURITY_DATE, 0.0)
+                mSimulatorValidator.validate(RATE, MATURITY_DATE, 0.0)
 
                 verify(mMessageObserver).onChanged(R.string.type_how_much_you_like_apply)
                 verify(mLoadingObserver).onChanged(false)
