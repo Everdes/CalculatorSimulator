@@ -174,8 +174,8 @@ open class SimulatorViewModelTest {
                 verify(mLoadingObserver).onChanged(true)
                 mSimulatorValidator.validate(RATE, MATURITY_DATE, 0.0)
 
-                verify(mMessageObserver).onChanged(R.string.type_how_much_you_like_apply)
                 verify(mLoadingObserver).onChanged(false)
+                verify(mMessageObserver).onChanged(R.string.type_how_much_you_like_apply)
             }
         }
     }
